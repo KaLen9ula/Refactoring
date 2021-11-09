@@ -1,5 +1,4 @@
 require_relative '../../autoloader'
-require 'pry'
 
 class Console
   include InputHelper

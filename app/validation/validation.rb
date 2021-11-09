@@ -1,5 +1,3 @@
-require 'pry'
-
 class AccountValidator
   MIN_LOGIN_SIZE = 4
   MAX_LOGIN_SIZE = 20

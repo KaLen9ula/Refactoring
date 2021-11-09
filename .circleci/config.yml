@@ -36,9 +36,6 @@ commands:
       - run:
           name: fasterer
           command: bundle exec fasterer
-
-
-
   run_specs:
     steps:
       - run:
@@ -51,7 +48,6 @@ commands:
                               $TEST_FILES
       - store_artifacts:
           path: /tmp/test-results
-
 
 jobs:
   lintering:
