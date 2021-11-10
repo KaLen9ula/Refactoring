@@ -1,5 +1,3 @@
-require 'pry'
-
 RSpec.describe Console do
   OVERRIDABLE_FILENAME = 'spec/fixtures/account.yml'.freeze
 
