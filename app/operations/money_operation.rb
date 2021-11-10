@@ -47,14 +47,14 @@ class MoneyOperation
     card.put_money(amount)
     @database.update_database
     print_to_console('notification.put_money', amount: amount, card_number: card.card_number,
-                                          balance: card.balance, tax: card.put_tax(amount))
+                                               balance: card.balance, tax: card.put_tax(amount))
   end
 
   def withdraw_money(card, amount)
     card.money_left(amount)
     @database.update_database
     print_to_console('notification.withdraw_money', amount: amount, card_number: card.card_number,
-                                               balance: card.balance, tax: card.withdraw_tax(amount))
+                                                    balance: card.balance, tax: card.withdraw_tax(amount))
   end
 
   def send_money(sender_card, recipient_card, amount)
@@ -62,9 +62,9 @@ class MoneyOperation
     recipient_card.put_money(amount)
     @database.update_database
     print_to_console('notification.put_money', amount: amount, card_number: sender_card.card_number,
-                                          balance: recipient_card.balance, tax: sender_card.put_tax(amount))
+                                               balance: recipient_card.balance, tax: sender_card.put_tax(amount))
     print_to_console('notification.put_money', amount: amount, card_number: recipient_card.card_number,
-                                          balance: sender_card.balance, tax: sender_card.sender_tax(amount))
+                                               balance: sender_card.balance, tax: sender_card.sender_tax(amount))
   end
 
   def acquire_withdraw_amount(card)
@@ -95,7 +95,6 @@ class MoneyOperation
     return true if card.put_available?(amount)
 
     print_to_console('notification.higher_tax')
-    false
   end
 
   def available_withdraw_amount?(amount, card)
@@ -103,7 +102,6 @@ class MoneyOperation
     return true if card.withdraw_available?(amount)
 
     print_to_console('notification.no_enough_money')
-    false
   end
 
   def available_send_amount?(amount, sender_card, recipient_card)
@@ -117,20 +115,17 @@ class MoneyOperation
     return true if sender_card.send_money?(amount)
 
     print_to_console('notification.no_enough_money_on_sender_card')
-    false
   end
 
   def validate_put_money?(amount, recipient_card)
     return true if recipient_card.put_money?(amount)
 
     print_to_console('notification.no_enough_money_on_sender_card')
-    false
   end
 
   def validate_amount?(amount, notice_text)
     return true if amount.positive?
 
     puts notice_text
-    false
   end
 end

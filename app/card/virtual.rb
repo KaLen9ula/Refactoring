@@ -1,5 +1,5 @@
 class Virtual < Card
-  TYPE = self.name.downcase
+  TYPE = name.downcase
   BALANCE = 150
   PART_WITHDRAW_TAX = 0.88
   PUT_TAX = 1

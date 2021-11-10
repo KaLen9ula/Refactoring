@@ -1,5 +1,5 @@
 class Usual < Card
-  TYPE = self.name.downcase
+  TYPE = name.downcase
   BALANCE = 50
   PART_WITHDRAW_TAX = 0.05
   PART_PUT_TAX = 0.02
