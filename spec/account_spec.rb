@@ -1,3 +1,5 @@
+require 'pry'
+
 RSpec.describe Console do
   OVERRIDABLE_FILENAME = 'spec/fixtures/account.yml'.freeze
 
@@ -80,9 +82,9 @@ RSpec.describe Console do
   ].freeze
 
   CARDS = {
-    usual: UsualCard.new(50.00),
-    capitalist: CapitalistCard.new(100.00),
-    virtual: VirtualCard.new(150.00)
+    usual: Usual.new(50.00),
+    capitalist: Capitalist.new(100.00),
+    virtual: Virtual.new(150.00)
   }.freeze
 
   let(:current_subject) { described_class.new }
@@ -681,8 +683,8 @@ RSpec.describe Console do
       end
 
       context 'with correct input of card number' do
-        let(:card_one) { CapitalistCard.new(50.0) }
-        let(:card_two) { CapitalistCard.new(100.0) }
+        let(:card_one) { Capitalist.new(50.0) }
+        let(:card_two) { Capitalist.new(100.0) }
         let(:fake_cards) { [card_one, card_two] }
         let(:chosen_card_number) { 1 }
         let(:incorrect_money_amount) { -2 }
@@ -733,9 +735,9 @@ RSpec.describe Console do
           context 'with tax lower than amount' do
             let(:custom_cards) do
               [
-                UsualCard.new(default_balance),
-                CapitalistCard.new(default_balance),
-                VirtualCard.new(default_balance)
+                Usual.new(default_balance),
+                Capitalist.new(default_balance),
+                Virtual.new(default_balance)
               ]
             end
 
@@ -829,8 +831,8 @@ RSpec.describe Console do
       end
 
       context 'with correct input of card number' do
-        let(:card_one) { CapitalistCard.new(50.0) }
-        let(:card_two) { CapitalistCard.new(100.0) }
+        let(:card_one) { Capitalist.new(50.0) }
+        let(:card_two) { Capitalist.new(100.0) }
         let(:fake_cards) { [card_one, card_two] }
         let(:chosen_card_number) { 1 }
         let(:incorrect_money_amount) { -2 }

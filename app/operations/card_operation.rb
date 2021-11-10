@@ -10,9 +10,9 @@ class CardOperation
   end
 
   CARDS = [
-    UsualCard,
-    CapitalistCard,
-    VirtualCard
+    Usual,
+    Capitalist,
+    Virtual
   ].freeze
 
   def create_card_operation
@@ -49,9 +49,9 @@ class CardOperation
       detected_card = @database.accounts.map(&:cards).detect { |card| card.card_number == number_card }
       return detected_card unless detected_card.nil?
 
-      puts I18n.t('notification.no_number_card', number_card: number_card)
+      print_to_console('notification.no_number_card', number_card: number_card)
     else
-      puts I18n.t('request.correct_number_card')
+      print_to_console('request.correct_number_card')
     end
   end
 
@@ -64,7 +64,7 @@ class CardOperation
       @database.update_database
       return true
     end
-    puts I18n.t('notification.wrong_type_card')
+    print_to_console('notification.wrong_type_card')
     false
   end
 
@@ -98,15 +98,15 @@ class CardOperation
 
   def card_menu_output
     @account.cards.each_with_index do |card, index|
-      puts I18n.t('request.number_to_press', card_number: card.card_number, card_type: card.type, index: index + 1)
+      print_to_console('request.number_to_press', card_number: card.card_number, card_type: card.type, index: index + 1)
     end
-    puts I18n.t('request.to_exit')
+    print_to_console('request.to_exit')
   end
 
   def any_card?
     return true if @account.cards.any?
 
-    puts I18n.t('notification.no_card')
+    print_to_console('notification.no_card')
     false
   end
 end

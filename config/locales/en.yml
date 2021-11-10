@@ -64,9 +64,6 @@ en:
         no_enough_money_on_sender_card: 'There is no enough money on sender card'
     type_card:
         simple: 'simple'
-        usual: 'usual'
-        capitalist: 'capitalist'
-        virtual: 'virtual'
     input:
         name: 'Enter your name'
         login: 'Enter your login'

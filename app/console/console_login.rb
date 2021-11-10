@@ -2,6 +2,7 @@ require_relative '../../autoloader'
 
 class AccountLogIn
   include InputHelper
+  include OutputHelper
 
   def initialize(database)
     @database = database
@@ -10,7 +11,7 @@ class AccountLogIn
   def log_in
     account = receieve_account
     if account.nil?
-      puts I18n.t('warning.not_suitable_account')
+      print_to_console('warning.not_suitable_account')
       log_in
     else
       account

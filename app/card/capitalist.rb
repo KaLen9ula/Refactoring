@@ -1,5 +1,5 @@
-class CapitalistCard < Card
-  TYPE = I18n.t('type_card.capitalist').freeze
+class Capitalist < Card
+  TYPE = self.name.downcase
   BALANCE = 100
   PART_WITHDRAW_TAX = 0.04
   PUT_TAX = 10

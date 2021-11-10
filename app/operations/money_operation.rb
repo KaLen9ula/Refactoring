@@ -2,6 +2,7 @@ require_relative '../../autoloader'
 
 class MoneyOperation
   include InputHelper
+  include OutputHelper
 
   def initialize(database, account)
     @database = database
@@ -45,14 +46,14 @@ class MoneyOperation
   def put_money(card, amount)
     card.put_money(amount)
     @database.update_database
-    puts I18n.t('notification.put_money', amount: amount, card_number: card.card_number,
+    print_to_console('notification.put_money', amount: amount, card_number: card.card_number,
                                           balance: card.balance, tax: card.put_tax(amount))
   end
 
   def withdraw_money(card, amount)
     card.money_left(amount)
     @database.update_database
-    puts I18n.t('notification.withdraw_money', amount: amount, card_number: card.card_number,
+    print_to_console('notification.withdraw_money', amount: amount, card_number: card.card_number,
                                                balance: card.balance, tax: card.withdraw_tax(amount))
   end
 
@@ -60,9 +61,9 @@ class MoneyOperation
     sender_card.send_money(amount)
     recipient_card.put_money(amount)
     @database.update_database
-    puts I18n.t('notification.put_money', amount: amount, card_number: sender_card.card_number,
+    print_to_console('notification.put_money', amount: amount, card_number: sender_card.card_number,
                                           balance: recipient_card.balance, tax: sender_card.put_tax(amount))
-    puts I18n.t('notification.put_money', amount: amount, card_number: recipient_card.card_number,
+    print_to_console('notification.put_money', amount: amount, card_number: recipient_card.card_number,
                                           balance: sender_card.balance, tax: sender_card.sender_tax(amount))
   end
 
@@ -93,7 +94,7 @@ class MoneyOperation
     return false unless validate_amount?(amount, I18n.t('notification.correct_amount_two'))
     return true if card.put_available?(amount)
 
-    puts I18n.t('notification.higher_tax')
+    print_to_console('notification.higher_tax')
     false
   end
 
@@ -101,7 +102,7 @@ class MoneyOperation
     return false unless validate_amount?(amount, I18n.t('notification.correct_amount_one'))
     return true if card.withdraw_available?(amount)
 
-    puts I18n.t('notification.no_enough_money')
+    print_to_console('notification.no_enough_money')
     false
   end
 
@@ -115,14 +116,14 @@ class MoneyOperation
   def validate_send_money?(amount, sender_card)
     return true if sender_card.send_money?(amount)
 
-    puts I18n.t('notification.no_enough_money_on_sender_card')
+    print_to_console('notification.no_enough_money_on_sender_card')
     false
   end
 
   def validate_put_money?(amount, recipient_card)
     return true if recipient_card.put_money?(amount)
 
-    puts I18n.t('notification.no_enough_money_on_sender_card')
+    print_to_console('notification.no_enough_money_on_sender_card')
     false
   end
 

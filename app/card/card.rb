@@ -4,25 +4,25 @@ class Card
 
   TYPE = I18n.t('type_card.simple').freeze
   BALANCE = 0
-  NULL = 0
   CARD_NUMBER_LENGTH = 16
+  CARD_NUMBER_RANGE = (0..9).freeze
 
   def initialize(type, balance = BALANCE)
     @type = type
     @balance = balance
-    @card_number = CARD_NUMBER_LENGTH.times.map { rand(10) }.join
+    @card_number = Array.new(CARD_NUMBER_LENGTH) { rand(CARD_NUMBER_RANGE) }.join
   end
 
   def withdraw_tax(_amount)
-    NULL
+    0
   end
 
   def put_tax(_amount)
-    NULL
+    0
   end
 
   def send_tax(_amount)
-    NULL
+    0
   end
 
   def self.type

@@ -1,5 +1,5 @@
-class UsualCard < Card
-  TYPE = I18n.t('type_card.usual').freeze
+class Usual < Card
+  TYPE = self.name.downcase
   BALANCE = 50
   PART_WITHDRAW_TAX = 0.05
   PART_PUT_TAX = 0.02

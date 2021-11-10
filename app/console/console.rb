@@ -54,12 +54,12 @@ class Console
 
   def main_menu
     loop do
-      puts I18n.t('menu', account_name: @current_account.name)
+      print_to_console('menu', account_name: @current_account.name)
       command = acquire_input
       exit if command == I18n.t('commands.exit')
       return public_send(COMMANDS[command]) if COMMANDS.keys.include?(command)
 
-      puts I18n.t('notification.wrong_command')
+      print_to_console('notification.wrong_command')
     end
   end
 

@@ -1,5 +1,5 @@
-class VirtualCard < Card
-  TYPE = I18n.t('type_card.virtual').freeze
+class Virtual < Card
+  TYPE = self.name.downcase
   BALANCE = 150
   PART_WITHDRAW_TAX = 0.88
   PUT_TAX = 1
