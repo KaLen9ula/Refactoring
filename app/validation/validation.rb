@@ -1,10 +1,7 @@
 class AccountValidator
-  MIN_LOGIN_SIZE = 4
-  MAX_LOGIN_SIZE = 20
-  MIN_PASSWORD_SIZE = 6
-  MAX_PASSWORD_SIZE = 30
-  MIN_AGE_SIZE = 23
-  MAX_AGE_SIZE = 90
+  LOGIN_SIZE = (4..20).freeze
+  PASSWORD_SIZE = (6..30).freeze
+  AGE_SIZE = (23..90).freeze
 
   def initialize(database)
     @errors = []
@@ -19,27 +16,31 @@ class AccountValidator
 
   def validate_login(login)
     @errors << I18n.t('validation.login_present') if login.empty?
-    @errors << I18n.t('validation.login_shorter') if login.length > MAX_LOGIN_SIZE
-    @errors << I18n.t('validation.login_longer') if login.length < MIN_LOGIN_SIZE
-    @errors << I18n.t('validation.login_exists') if @database.accounts.map(&:login).include? login
+    @errors << I18n.t('validation.login_shorter') if login.length > LOGIN_SIZE.max
+    @errors << I18n.t('validation.login_longer') if login.length < LOGIN_SIZE.min
+    @errors << I18n.t('validation.login_exists') if login_exists?(login)
   end
 
   def validate_password(password)
     @errors << I18n.t('validation.password_present') if password.empty?
-    @errors << I18n.t('validation.password_shorter') if password.length > MAX_PASSWORD_SIZE
-    @errors << I18n.t('validation.password_longer') if password.length < MIN_PASSWORD_SIZE
+    @errors << I18n.t('validation.password_shorter') if password.length > PASSWORD_SIZE.max
+    @errors << I18n.t('validation.password_longer') if password.length < PASSWORD_SIZE.min
   end
 
   def validate_age(age)
-    @errors << I18n.t('validation.invalid_age') unless (MIN_AGE_SIZE..MAX_AGE_SIZE).cover?(age)
+    @errors << I18n.t('validation.invalid_age') unless (AGE_SIZE.min..AGE_SIZE.max).cover?(age)
   end
 
   def output_errors
-    @errors.each { |err| puts err }
+    @errors.each { |error| puts error }
     @errors = []
   end
 
   def account_errors?
     @errors.empty?
+  end
+
+  def login_exists?(login)
+    @database.accounts.map(&:login).include? login
   end
 end

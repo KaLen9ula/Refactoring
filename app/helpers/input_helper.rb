@@ -1,8 +1,7 @@
 module InputHelper
   def acquire_amount(question = nil)
     puts question if question
-    answer = gets.chomp
-    answer.to_i
+    gets.chomp.to_i
   end
 
   def acquire_input(question = nil)

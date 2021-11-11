@@ -91,14 +91,14 @@ class MoneyOperation
   end
 
   def available_put_amount?(amount, card)
-    return false unless validate_amount?(amount, I18n.t('notification.correct_amount_two'))
+    return unless validate_amount?(amount, I18n.t('notification.correct_amount_two'))
     return true if card.put_available?(amount)
 
     print_to_console('notification.higher_tax')
   end
 
   def available_withdraw_amount?(amount, card)
-    return false unless validate_amount?(amount, I18n.t('notification.correct_amount_one'))
+    return unless validate_amount?(amount, I18n.t('notification.correct_amount_one'))
     return true if card.withdraw_available?(amount)
 
     print_to_console('notification.no_enough_money')
@@ -108,7 +108,7 @@ class MoneyOperation
     validations = [validate_amount?(amount, I18n.t('notification.wrong_number')),
                    validate_send_money?(amount, sender_card),
                    validate_put_money?(amount, recipient_card)]
-    validations.all? ? true : false
+    validations.all?
   end
 
   def validate_send_money?(amount, sender_card)

@@ -65,7 +65,6 @@ class CardOperation
       return true
     end
     print_to_console('notification.wrong_type_card')
-    false
   end
 
   def receive_card(wrong_number_text)
@@ -107,6 +106,5 @@ class CardOperation
     return true if @account.cards.any?
 
     print_to_console('notification.no_card')
-    false
   end
 end

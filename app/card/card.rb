@@ -13,16 +13,16 @@ class Card
     @card_number = Array.new(CARD_NUMBER_LENGTH) { rand(CARD_NUMBER_RANGE) }.join
   end
 
-  def withdraw_tax(_amount)
-    0
+  def withdraw_tax(amount = 0)
+    amount
   end
 
-  def put_tax(_amount)
-    0
+  def put_tax(amount = 0)
+    amount
   end
 
-  def send_tax(_amount)
-    0
+  def send_tax(amount = 0)
+    amount
   end
 
   def self.type

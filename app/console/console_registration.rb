@@ -18,25 +18,41 @@ class AccountRegistration
 
   def name_input
     name = acquire_input(I18n.t('input.name'))
-    @account_validator.validate_name(name)
+    name_validation(name)
     name
   end
 
   def login_input
     login = acquire_input(I18n.t('input.login'))
-    @account_validator.validate_login(login)
+    login_validation(login)
     login
   end
 
   def password_input
     password = acquire_input(I18n.t('input.password'))
-    @account_validator.validate_password(password)
+    password_validation(password)
     password
   end
 
   def age_input
     age = acquire_input(I18n.t('input.age')).to_i
-    @account_validator.validate_age(age)
+    age_validation(age)
     age
+  end
+
+  def name_validation(name)
+    @account_validator.validate_name(name)
+  end
+
+  def login_validation(login)
+    @account_validator.validate_login(login)
+  end
+
+  def password_validation(password)
+    @account_validator.validate_password(password)
+  end
+
+  def age_validation(age)
+    @account_validator.validate_age(age)
   end
 end

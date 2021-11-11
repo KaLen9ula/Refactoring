@@ -21,6 +21,8 @@ class Database
     File.open(FILE_PATH, 'w') { |file| file.write @accounts.to_yaml }
   end
 
+  private
+
   def load_accounts
     return [] unless File.exist?(FILE_PATH)
 
