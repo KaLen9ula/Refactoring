@@ -24,6 +24,6 @@ class AccountLogIn
     login = acquire_input(I18n.t('request.login'))
     password = acquire_input(I18n.t('request.password'))
 
-    @database.accounts.detect { |a| a.access? login, password }
+    @database.accounts.detect { |account| account.access? login, password }
   end
 end

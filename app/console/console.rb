@@ -20,7 +20,7 @@ class Console
   end
 
   def console
-    output_text('console')
+    print_multiline_text('console')
     case acquire_input
     when I18n.t('commands.create') then create
     when I18n.t('commands.load') then load

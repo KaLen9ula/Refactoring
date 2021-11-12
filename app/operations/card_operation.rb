@@ -17,7 +17,7 @@ class CardOperation
 
   def create_card_operation
     loop do
-      output_text('card')
+      print_multiline_text('card')
       create_card? ? break : next
     end
   end
@@ -46,8 +46,7 @@ class CardOperation
   def search_recipient_card
     number_card = acquire_input(I18n.t('input.recipient_card'))
     if number_card.length == Card::CARD_NUMBER_LENGTH
-      detected_card = @database.accounts.map(&:cards).detect { |card| card.card_number == number_card }
-      return detected_card unless detected_card.nil?
+      return find_card(number_card) unless detected_card.nil?
 
       print_to_console('notification.no_number_card', number_card: number_card)
     else
@@ -106,5 +105,9 @@ class CardOperation
     return true if @account.cards.any?
 
     print_to_console('notification.no_card')
+  end
+
+  def find_card(number_card)
+    @database.accounts.map(&:cards).detect { |card| card.card_number == number_card }
   end
 end
