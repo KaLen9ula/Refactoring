@@ -32,7 +32,9 @@ class CardOperation
   def show_account_cards
     return unless any_card?
 
-    @account.cards.each { |card| print_to_console("notification.show_card", card_number: card.card_number, card_type: card.type) }
+    @account.cards.each do |card|
+      print_to_console('notification.show_card', card_number: card.card_number, card_type: card.type)
+    end
   end
 
   def select_card(request_text, wrong_number_text = I18n.t('notification.wrong_number'))
