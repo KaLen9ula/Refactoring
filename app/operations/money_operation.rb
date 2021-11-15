@@ -12,30 +12,30 @@ class MoneyOperation
 
   def withdraw_money_operation
     card = @card_operation.select_card(I18n.t('request.card_withdrawing'))
-    return if card.nil?
+    return unless card
 
     amount = acquire_withdraw_amount(card)
-    return if amount.nil?
+    return unless amount
 
     withdraw_money(card, amount)
   end
 
   def put_money_operation
     card = @card_operation.select_card(I18n.t('request.card_putting'))
-    return if card.nil?
+    return unless card
 
     amount = acquire_put_amount(card)
-    return if amount.nil?
+    return unless amount
 
     put_money(card, amount)
   end
 
   def send_money_operation
     sender_card = @card_operation.select_card(I18n.t('request.card_send'), I18n.t('request.correct_card'))
-    return if sender_card.nil?
+    return unless sender_card
 
     recipient_card = @card_operation.search_recipient_card
-    return if recipient_card.nil?
+    return unless recipient_card
 
     amount = acquire_send_amount(sender_card, recipient_card)
     money_transaction(sender_card, recipient_card, amount)

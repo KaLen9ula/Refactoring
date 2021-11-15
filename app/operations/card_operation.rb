@@ -24,7 +24,7 @@ class CardOperation
 
   def destroy_card_operation
     card = select_card(I18n.t('request.delete'))
-    return if card.nil?
+    return unless card
 
     destroy_card(card) if agree_delete?(card)
   end
@@ -70,7 +70,7 @@ class CardOperation
 
   def receive_card(wrong_number_text)
     card_sequence_number = receive_card_sequence_number
-    return if card_sequence_number.nil?
+    return unless card_sequence_number
 
     card = @account.find_card_by_index(card_sequence_number.to_i - 1)
     return card unless card.nil?
