@@ -1,5 +1,3 @@
-require_relative '../../autoloader'
-
 class CardOperation
   include InputHelper
   include OutputHelper

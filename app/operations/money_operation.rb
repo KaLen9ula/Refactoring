@@ -1,5 +1,3 @@
-require_relative '../../autoloader'
-
 class MoneyOperation
   include InputHelper
   include OutputHelper

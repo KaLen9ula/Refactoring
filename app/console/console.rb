@@ -1,5 +1,3 @@
-require_relative '../../autoloader'
-
 class Console
   include InputHelper
   include OutputHelper

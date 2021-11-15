@@ -1,5 +1,3 @@
-require_relative '../../autoloader'
-
 class AccountRegistration
   include InputHelper
 

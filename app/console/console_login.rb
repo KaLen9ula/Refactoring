@@ -1,5 +1,3 @@
-require_relative '../../autoloader'
-
 class AccountLogIn
   include InputHelper
   include OutputHelper
