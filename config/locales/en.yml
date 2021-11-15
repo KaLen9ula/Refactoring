@@ -62,6 +62,7 @@ en:
         no_enough_money: "You don't have enough money on card for such operation"
         higher_tax: 'Your tax is higher than input amount'
         no_enough_money_on_sender_card: 'There is no enough money on sender card'
+        show_card: '- %{card_number}, %{card_type}'
     type_card:
         simple: 'simple'
     input:

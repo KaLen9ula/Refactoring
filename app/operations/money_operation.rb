@@ -38,7 +38,7 @@ class MoneyOperation
     return if recipient_card.nil?
 
     amount = acquire_send_amount(sender_card, recipient_card)
-    send_money(sender_card, recipient_card, amount)
+    money_transaction(sender_card, recipient_card, amount)
   end
 
   private
@@ -57,7 +57,7 @@ class MoneyOperation
                                                     balance: card.balance, tax: card.withdraw_tax(amount))
   end
 
-  def send_money(sender_card, recipient_card, amount)
+  def money_transaction(sender_card, recipient_card, amount)
     sender_card.send_money(amount)
     recipient_card.put_money(amount)
     @database.update_database
